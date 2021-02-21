@@ -44,6 +44,9 @@ public class IntegrationTest {
     	assertEquals(200, getResponse.getStatusCodeValue());
     	product.setTitle("updatedTitle");
     	this.restTemplate.put("http://localhost:"+port+"/v1/product", product, Product.class);
+    	getResponse = this.restTemplate
+                .getForEntity("http://localhost:"+port+"/v1/product/1", Product.class);
+    	assertEquals("updatedTitle", getResponse.getBody().getTitle());
     }
     
 }
